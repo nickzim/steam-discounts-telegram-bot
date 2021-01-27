@@ -1,4 +1,6 @@
-package model;
+package utils;
+
+import model.Game;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public final class SteamWebScraper {
+public final class SteamWebScraperUtil {
 
     private final String LINK = "https://store.steampowered.com/?l=russian";
 

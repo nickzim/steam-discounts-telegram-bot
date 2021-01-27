@@ -1,5 +1,7 @@
 package model;
 
+import utils.SteamWebScraperUtil;
+
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -10,7 +12,7 @@ public final class GamesList {
         StringBuilder stringBuilder = new StringBuilder();
         AtomicInteger counter = new AtomicInteger(0);
 
-        new SteamWebScraper().getPricesList().stream().limit(number).forEach(game -> stringBuilder.append(counter.incrementAndGet()).append(") ").append(game).append("\n\n"));
+        new SteamWebScraperUtil().getPricesList().stream().limit(number).forEach(game -> stringBuilder.append(counter.incrementAndGet()).append(") ").append(game).append("\n\n"));
 
         return stringBuilder.toString();
     }
