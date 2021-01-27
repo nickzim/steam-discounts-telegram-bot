@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -32,14 +31,11 @@ public final class SteamWebScraper {
 
         List<Game> games = new ArrayList<>();
 
-        int counter = 0;
-        StringBuilder result = new StringBuilder();
         for (int i = 0; i < list.size(); i++){
             String it = list.get(i);
 
             if (discount.matcher(it).find()){
                 Game game = new Game();
-                result.append(counter).append(") ");
 
                 Matcher matcher;
 
@@ -48,14 +44,14 @@ public final class SteamWebScraper {
                     game.setDiscountPercent(matcher.group());
                 }
 
-                matcher = Pattern.compile("\"discount_original_price\">\\d+").matcher(it);
+                matcher = Pattern.compile("\"discount_original_price\">\\$\\d+.\\d{2}").matcher(it);
                 if (matcher.find()){
-                    game.setOriginPrice(matcher.group().replaceAll("\\D",""));
+                    game.setOriginPrice(matcher.group().replaceAll("\".+>",""));
                 }
 
-                matcher = Pattern.compile("\"discount_final_price\">\\d+").matcher(it);
+                matcher = Pattern.compile("\"discount_final_price\">\\$\\d+.\\d{2}").matcher(it);
                 if (matcher.find()){
-                    game.setDiscountPrice(matcher.group().replaceAll("\\D",""));
+                    game.setDiscountPrice(matcher.group().replaceAll("\".+>",""));
                 }
 
                 matcher = Pattern.compile(">.+<").matcher(list.get(i + 1));

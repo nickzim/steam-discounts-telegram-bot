@@ -43,7 +43,7 @@ public final class Game {
 
     @Override
     public String toString() {
-        return name + " : " + originPrice + "руб. -> " + discountPrice + " руб." + " : " + discountPercent;
+        return name + " : $" + originPrice + " -> $" + discountPrice + " : " + discountPercent;
     }
 
     @Override
